@@ -36,13 +36,13 @@ else
 	echo "timetree_inference failed $retval"
 fi
 
-treetime mugration --tree treetime_examples/data/zika/zika.nwk --states treetime_examples/data/zika/zika.metadata.csv --weights treetime_examples/data/zika/zika.country_weights.csv --attribute country
+treetime moogration --tree treetime_examples/data/zika/zika.nwk --states treetime_examples/data/zika/zika.metadata.csv --weights treetime_examples/data/zika/zika.country_weights.csv --attribute country
 retval="$?"
 if [ "$retval" == 0 ]; then
-	echo "mugration ok"
+	echo "moogration ok"
 else
 	((all_tests++))
-	echo "mugration failed $retval"
+	echo "moogration failed $retval"
 fi
 
 treetime --aln treetime_examples/data/tb/lee_2015.vcf.gz --vcf-reference treetime_examples/data/tb/tb_ref.fasta --tree treetime_examples/data/tb/lee_2015.nwk --clock-rate 1e-7 --dates treetime_examples/data/tb/lee_2015.metadata.tsv

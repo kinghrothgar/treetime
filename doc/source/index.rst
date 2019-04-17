@@ -76,7 +76,7 @@ Calculates the root-to-tip regression and quantifies the 'clock-i-ness' of the t
 It will reroot the tree to maximize the clock-like
 signal and recalculate branch length unless run with :code:`--keep_root`.
 
-Subcommand :code:`treetime mugration`
+Subcommand :code:`treetime moogration`
 -------------------------------------
 Reconstructs discrete ancestral states, for example geographic location, host, or similar.
 

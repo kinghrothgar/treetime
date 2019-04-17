@@ -649,9 +649,9 @@ def ancestral_reconstruction(params):
 
     return 0
 
-def mugration(params):
+def moogration(params):
     """
-    implementing treetime mugration
+    implementing treetime moogration
     """
 
     ###########################################################################
@@ -664,7 +664,7 @@ def mugration(params):
         print("file with states does not exist")
         return 1
 
-    outdir = get_outdir(params, '_mugration')
+    outdir = get_outdir(params, '_moogration')
 
     taxon_name = 'name' if 'name' in states.columns else states.columns[0]
     if params.attribute:
@@ -676,17 +676,17 @@ def mugration(params):
             return 1
     else:
         attr = states.columns[1]
-        print("Attribute for mugration inference was not specified. Using "+attr, file=sys.stderr)
+        print("Attribute for moogration inference was not specified. Using "+attr, file=sys.stderr)
 
     leaf_to_attr = {x[taxon_name]:x[attr] for xi, x in states.iterrows()
                     if x[attr]!=params.missing_data}
     unique_states = sorted(set(leaf_to_attr.values()))
     nc = len(unique_states)
     if nc>180:
-        print("mugration: can't have more than 180 states!", file=sys.stderr)
+        print("moogration: can't have more than 180 states!", file=sys.stderr)
         return 1
     elif nc<2:
-        print("mugration: only one or zero states found -- this doesn't make any sense", file=sys.stderr)
+        print("moogration: only one or zero states found -- this doesn't make any sense", file=sys.stderr)
         return 1
 
     ###########################################################################
@@ -715,14 +715,14 @@ def mugration(params):
     # set up dummy matrix
     W = np.ones((nc,nc), dtype=float)
 
-    mugration_GTR = GTR.custom(pi = weights, W=W, alphabet = np.array(alphabet))
-    mugration_GTR.profile_map[missing_char] = np.ones(nc)
-    mugration_GTR.ambiguous=missing_char
+    moogration_GTR = GTR.custom(pi = weights, W=W, alphabet = np.array(alphabet))
+    moogration_GTR.profile_map[missing_char] = np.ones(nc)
+    moogration_GTR.ambiguous=missing_char
 
     ###########################################################################
     ### set up treeanc
     ###########################################################################
-    treeanc = TreeAnc(params.tree, gtr=mugration_GTR, verbose=params.verbose,
+    treeanc = TreeAnc(params.tree, gtr=moogration_GTR, verbose=params.verbose,
                       convert_upper=False, one_mutation=0.001)
     pseudo_seqs = [SeqRecord(id=n.name,name=n.name,
                    seq=Seq(reverse_alphabet[leaf_to_attr[n.name]]
@@ -740,7 +740,7 @@ def mugration(params):
     ###########################################################################
     ### output
     ###########################################################################
-    print("\nCompleted mugration model inference of attribute '%s' for"%attr,params.tree)
+    print("\nCompleted moogration model inference of attribute '%s' for"%attr,params.tree)
 
     basename = get_basename(params, outdir)
     gtr_name = basename + 'GTR.txt'
@@ -749,7 +749,7 @@ def mugration(params):
         for state in unique_states:
             ofile.write('  %s: %s\n'%(reverse_alphabet[state], state))
         ofile.write('\n\n'+str(treeanc.gtr)+'\n')
-        print("\nSaved inferred mugration model as:", gtr_name)
+        print("\nSaved inferred moogration model as:", gtr_name)
 
     terminal_count = 0
     for n in treeanc.tree.find_clades():

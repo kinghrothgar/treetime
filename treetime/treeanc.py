@@ -327,7 +327,7 @@ class TreeAnc(object):
         #Convert to uppercase here, rather than in _attach_sequences_to_nodes
         #(which used to do it through seq2array in seq_utils.py)
         #so that it is controlled by param convert_upper. This way for
-        #mugration (ancestral reconstruction of non-sequences), you can
+        #moogration (ancestral reconstruction of non-sequences), you can
         #use upper- and lower case characters for discrete states!
         if (not self.is_vcf) and self.convert_upper:
             self._aln = MultipleSeqAlignment([seq.upper() for seq in self._aln])

@@ -2,7 +2,7 @@
 from __future__ import print_function, division, absolute_import
 import sys, argparse, os
 from treetime import version
-from treetime.wrappers import ancestral_reconstruction, mugration, scan_homoplasies, timetree, estimate_clock_model
+from treetime.wrappers import ancestral_reconstruction, moogration, scan_homoplasies, timetree, estimate_clock_model
 import matplotlib
 matplotlib.use('AGG')
 
@@ -43,7 +43,7 @@ subcommand_description = \
     "\t ancestral\tinfer ancestral sequences maximizing the joint or marginal likelihood.\n"\
     "\t homoplasy\tanalyze patterns of recurrent mutations aka homoplasies.\n"\
     "\t clock\t\testimate molecular clock parameters and reroot the tree.\n"\
-    "\t mugration\tmap discrete character such as host or country to the tree.\n\n"\
+    "\t moogration\tmap discrete character such as host or country to the tree.\n\n"\
     "(note that 'tt' is a default subcommand in python2 that doesn't need to be specified).\n"\
     "To print a description and argument list of the individual sub-commands, type:\n\n"\
     "\t treetime <subcommand> -h\n\n"
@@ -108,7 +108,7 @@ homoplasy_description = \
     "The tree is then scanned for homoplasies. An excess number of homoplasies "\
     "might suggest contamination, recombination, culture adaptation or similar."
 
-mugration_description = \
+moogration_description = \
     "Reconstructs discrete ancestral states, for example "\
     "geographic location, host, or similar. In addition to ancestral states, "\
     "a GTR model of state transitions is inferred."
@@ -239,8 +239,8 @@ if __name__ == '__main__':
     add_common_args(a_parser)
     a_parser.set_defaults(func=ancestral_reconstruction)
 
-    ## MUGRATION
-    m_parser = subparsers.add_parser('mugration', description=mugration_description)
+    ## MOOGRATION
+    m_parser = subparsers.add_parser('moogration', description=moogration_description)
     m_parser.add_argument('--tree', required = True, type=str, help=tree_description)
     m_parser.add_argument('--attribute', type=str, help ="attribute to reconstruct, e.g. country")
     m_parser.add_argument('--states', required = True, type=str, help ="csv or tsv file with discrete characters."
@@ -248,11 +248,11 @@ if __name__ == '__main__':
     m_parser.add_argument('--weights', type=str, help="csv or tsv file with probabilities of that a randomly sampled "
                         "sequence at equilibrium has a particular state. E.g. population of different continents or countries. E.g.:"
                         "\n#country,weight\nmicronesia,0.1\n...")
-    m_parser.add_argument('--confidence', action="store_true", help="output confidence of mugration inference")
+    m_parser.add_argument('--confidence', action="store_true", help="output confidence of moogration inference")
     m_parser.add_argument('--pc', type=float, default=1.0, help ="pseudo-counts higher numbers will results in 'flatter' models")
     m_parser.add_argument('--missing-data', type=str, default='?', help ="string indicating missing data")
     add_common_args(m_parser)
-    m_parser.set_defaults(func=mugration)
+    m_parser.set_defaults(func=moogration)
 
 
     ## CLOCKSIGNAL

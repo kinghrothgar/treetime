@@ -31,7 +31,7 @@ Have a look at our [examples and tutorials](https://github.com/neherlab/treetime
     + [Rerooting and substitution rate estimation](#rerooting-and-substitution-rate-estimation)
     + [Ancestral sequence reconstruction](#ancestral-sequence-reconstruction)
     + [Homoplasy analysis](#homoplasy-analysis)
-    + [Mugration analysis](#mugration-analysis)
+    + [Moogration analysis](#moogration-analysis)
     + [Metadata and date format](#metadata-and-date-format)
   * [Example scripts](#example-scripts)
   * [Related tools](#related-tools)
@@ -110,16 +110,16 @@ TreeTime provides a simple command to summarize homoplasies in data
 The full list if options is available by typing `treetime homoplasy -h`.
 Please see [treetime_examples/homoplasy.md](https://github.com/neherlab/treetime_examples/blob/master/homoplasy.md) for examples and more documentation.
 
-#### Mugration analysis
+#### Moogration analysis
 Migration between discrete geographic regions, host switching, or other transition between discrete states are often parameterized by time-reversible models analogous to models describing evolution of genome sequences.
-Such models are hence often called "mugration" models.
-TreeTime GTR model machinery can be used to infer mugration models:
+Such models are hence often called "moogration" models.
+TreeTime GTR model machinery can be used to infer moogration models:
 ```bash
-  treetime mugration --tree <input.nwk> --states <states.csv> --attribute <field>
+  treetime moogration --tree <input.nwk> --states <states.csv> --attribute <field>
 ```
 where `<field>` is the relevant column in the csv file specifying the metadata `states.csv`, e.g. `<field>=country`.
-The full list if options is available by typing `treetime mugration -h`.
-Please see [treetime_examples/mugration.md](https://github.com/neherlab/treetime_examples/blob/master/mugration.md) for examples and more documentation.
+The full list if options is available by typing `treetime moogration -h`.
+Please see [treetime_examples/moogration.md](https://github.com/neherlab/treetime_examples/blob/master/moogration.md) for examples and more documentation.
 
 #### Metadata and date format
 Several of TreeTime commands require the user to specify a file with dates and/or other meta data.
